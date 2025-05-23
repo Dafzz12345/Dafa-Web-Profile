@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dafa Official | Web Profile</title>
+    <title>Dafa Official | Social Link Web</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -15,6 +15,9 @@
             --whatsapp: #25D366;
             --youtube: #FF0000;
             --telegram: #0088cc;
+            --github: #333; /* GitHub color */
+            --discord: #7289DA; /* Discord color */
+            --instagram: #E1306C; /* Instagram color */
             --neon-effect: 0 0 10px rgba(108, 92, 231, 0.8), 0 0 20px rgba(108, 92, 231, 0.6), 0 0 30px rgba(108, 92, 231, 0.4);
         }
         
@@ -237,6 +240,19 @@
         .telegram {
             background-color: var(--telegram);
         }
+
+        .github {
+            background-color: var(--github);
+        }
+
+        .discord {
+            background-color: var(--discord);
+        }
+
+        .instagram {
+            background-color: var(--instagram);
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); /* Instagram gradient */
+        }
         
         .floating-icons {
             position: absolute;
@@ -259,6 +275,31 @@
         @keyframes float {
             0% { transform: translateY(0) rotate(0deg); }
             100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        #music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 10;
+        }
+
+        #music-toggle:hover {
+            background-color: var(--secondary);
+            transform: scale(1.1);
         }
         
         @media (max-width: 480px) {
@@ -284,23 +325,35 @@
     
     <div class="profile-card">
         <div class="profile-img-container">
-            <img src="https://files.catbox.moe/v1w3mz.jpg" alt="Dafa Official" class="profile-img">
+            <img src="https://files.catbox.moe/ugynsp.jpg" alt="Dafa Official" class="profile-img">
         </div>
         
         <h1 class="profile-name">Dafa Official</h1>
-        <p class="profile-title">Aku Mah Masih Pemula</p>
+        <p class="profile-title">Social Link Web</p>
         
         <div class="social-links">
-            <a href="https://wa.me/62895393325895" class="social-link whatsapp" target="_blank">
+            <a href="https://wa.me/6282285450191" class="social-link whatsapp" target="_blank">
                 <i class="fab fa-whatsapp"></i> WhatsApp Pribadi
             </a>
             
             <a href="https://chat.whatsapp.com/IpLGkn2xjna7KHVu9ulLKJ" class="social-link whatsapp-group" target="_blank">
-                <i class="fab fa-whatsapp"></i> Grup WhatsApp
+                <i class="fab fa-whatsapp"></i> Grup Bot WhatsApp
             </a>
             
             <a href="https://whatsapp.com/channel/0029VayXVlR1dAw6PFa5SC09" class="social-link whatsapp-channel" target="_blank">
                 <i class="fab fa-whatsapp"></i> Channel WhatsApp
+            </a>
+            
+            <a href="https://github.com/Dafzz12345" class="social-link github" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+
+            <a href="https://discord.gg/dafa_pratama1" class="social-link discord" target="_blank">
+                <i class="fab fa-discord"></i> Discord
+            </a>
+
+            <a href="https://instagram.com/dafapratama950" class="social-link instagram" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
             </a>
             
             <a href="https://youtube.com/@DafaPratama2009" class="social-link youtube" target="_blank">
@@ -312,6 +365,15 @@
             </a>
         </div>
     </div>
+
+    <audio id="background-music" loop>
+        <source src="https://files.catbox.moe/r2vuso.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button id="music-toggle">
+        <i class="fas fa-play"></i>
+    </button>
     
     <script>
         const starsContainer = document.getElementById('stars');
@@ -328,12 +390,15 @@
         }
         
         const iconsContainer = document.getElementById('floating-icons');
-        const icons = ['fa-code', 'fa-laptop-code', 'fa-microchip', 'fa-server', 'fa-database', 
-                      'fa-robot', 'fa-gamepad', 'fa-mobile-screen', 'fa-globe', 'fa-cloud'];
+        const icons = [
+            'fa-code', 'fa-laptop-code', 'fa-microchip', 'fa-server', 'fa-database', 
+            'fa-robot', 'fa-gamepad', 'fa-mobile-screen', 'fa-globe', 'fa-cloud',
+            'fa-github', 'fa-discord', 'fa-instagram' // Added new icons here
+        ];
         
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 20; i++) { // Increased number of floating icons
             const icon = document.createElement('i');
-            icon.classList.add('floating-icon', 'fas', icons[Math.floor(Math.random() * icons.length)]);
+            icon.classList.add('floating-icon', 'fab', icons[Math.floor(Math.random() * icons.length)]);
             icon.style.left = `${Math.random() * 100}%`;
             icon.style.top = `${Math.random() * 100 + 100}%`;
             icon.style.fontSize = `${Math.random() * 20 + 10}px`;
@@ -359,6 +424,22 @@
         profileCard.addEventListener('mouseleave', () => {
             profileCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
         });
+
+        // Music Play/Pause functionality
+        const musicToggle = document.getElementById('music-toggle');
+        const backgroundMusic = document.getElementById('background-music');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                backgroundMusic.play();
+                musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
     </script>
 </body>
-  </html>
+    </html>
